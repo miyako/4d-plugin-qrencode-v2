@@ -1,0 +1,16 @@
+{
+    "name": "qrencode",
+    "id": 20000,
+    "commands": [
+        {
+            "theme": "qrencode",
+            "syntax": "qrcode(&T;&J):J",
+            "threadSafe": true
+        },
+        {
+            "theme": "qrencode",
+            "syntax": "qrcode array(&T;&J):C",
+            "threadSafe": true
+        }
+    ]
+}

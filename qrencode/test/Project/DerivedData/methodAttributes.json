@@ -1,0 +1,59 @@
+﻿{
+	"methods": {
+		"generate_file_from_template": {
+			"timeStamp": "2019-07-29T04:26:04.000Z",
+			"attributes": {
+				"invisible": true,
+				"preemptive": "capable"
+			}
+		},
+		"generate_project_infoplist": {
+			"timeStamp": "2019-07-02T13:51:21.000Z",
+			"attributes": {
+				"invisible": true,
+				"preemptive": "capable"
+			}
+		},
+		"generate_constants_xlf": {
+			"timeStamp": "2019-07-29T04:26:04.000Z",
+			"attributes": {
+				"invisible": true,
+				"preemptive": "capable"
+			}
+		},
+		"generate_project_xcode": {
+			"timeStamp": "2019-07-02T13:57:13.000Z",
+			"attributes": {
+				"invisible": true,
+				"preemptive": "capable"
+			}
+		},
+		"TEST": {
+			"timeStamp": "2019-10-11T15:13:57.945Z"
+		},
+		"generate_project": {
+			"timeStamp": "2019-10-10T13:17:54.000Z"
+		},
+		"generate_project_vs": {
+			"timeStamp": "2019-07-24T08:49:03.000Z",
+			"attributes": {
+				"invisible": true,
+				"preemptive": "capable"
+			}
+		},
+		"generate_project_plugin_stub": {
+			"timeStamp": "2019-07-23T08:36:58.000Z",
+			"attributes": {
+				"invisible": true,
+				"preemptive": "capable"
+			}
+		},
+		"generate_project_source": {
+			"timeStamp": "2019-07-02T14:36:13.000Z",
+			"attributes": {
+				"invisible": true,
+				"preemptive": "capable"
+			}
+		}
+	}
+}

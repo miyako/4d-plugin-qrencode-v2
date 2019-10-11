@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<xliff version="1.0" xmlns:d4="http://www.4d.com/d4-ns">
+    <header>
+        <note>qrencode</note>
+    </header>
+    <group resname="themes">
+        <trans-unit id="" resname="FD68E8BC1CB44384BE1561FF5597B81E" translate="no">
+            <source>QR Encode Mode</source>
+        </trans-unit>
+    </group>
+    <group restype="x-4DK#" d4:groupName="FD68E8BC1CB44384BE1561FF5597B81E">
+        <trans-unit d4:value="0:L" id="FD68E8BC1CB44384BE1561FF5597B81E.1">
+            <source>QR Mode Unicode</source>
+        </trans-unit>
+        <trans-unit d4:value="1:L" id="FD68E8BC1CB44384BE1561FF5597B81E.2">
+            <source>QR Mode Kanji</source>
+        </trans-unit>
+        <trans-unit d4:value="2:L" id="FD68E8BC1CB44384BE1561FF5597B81E.3">
+            <source>QR Mode Micro</source>
+        </trans-unit>
+        <trans-unit d4:value="4:L" id="FD68E8BC1CB44384BE1561FF5597B81E.4">
+            <source>QR Mode Latin</source>
+        </trans-unit>
+    </group>
+    <group resname="themes">
+        <trans-unit id="" resname="C6BE3B59924C4FC28139749D54A805B9" translate="no">
+            <source>QR Error Correction Level</source>
+        </trans-unit>
+    </group>
+    <group restype="x-4DK#" d4:groupName="C6BE3B59924C4FC28139749D54A805B9">
+        <trans-unit d4:value="0:L" id="C6BE3B59924C4FC28139749D54A805B9.1">
+            <source>QR Correction Level L</source>
+        </trans-unit>
+        <trans-unit d4:value="1:L" id="C6BE3B59924C4FC28139749D54A805B9.2">
+            <source>QR Correction Level M</source>
+        </trans-unit>
+        <trans-unit d4:value="2:L" id="C6BE3B59924C4FC28139749D54A805B9.3">
+            <source>QR Correction Level Q</source>
+        </trans-unit>
+        <trans-unit d4:value="3:L" id="C6BE3B59924C4FC28139749D54A805B9.4">
+            <source>QR Correction Level H</source>
+        </trans-unit>
+    </group>
+    <group resname="themes">
+        <trans-unit id="" resname="02792FDFD37644BA9DE1D6C39C0F8FAD" translate="no">
+            <source>QR Export Type</source>
+        </trans-unit>
+    </group>
+    <group restype="x-4DK#" d4:groupName="02792FDFD37644BA9DE1D6C39C0F8FAD">
+        <trans-unit d4:value="1:L" id="02792FDFD37644BA9DE1D6C39C0F8FAD.1">
+            <source>QR Format SVG</source>
+        </trans-unit>
+        <trans-unit d4:value="2:L" id="02792FDFD37644BA9DE1D6C39C0F8FAD.2">
+            <source>QR Format PNG</source>
+        </trans-unit>
+    </group>
+</xliff>
