@@ -1,9 +1,6 @@
 ﻿{
 	"editors": [
 		{
-			"type": "explorer"
-		},
-		{
 			"type": "method",
 			"id": 2147483643,
 			"codeDescriptor": {
