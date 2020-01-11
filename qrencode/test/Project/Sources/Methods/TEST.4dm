@@ -8,10 +8,10 @@ $params.margin:=1
 $params.size:=9
 $params.version:=1
 $params.format:=QR Format PNG
-$params.mode:=QR Mode Unicode
+$params.mode:=QR Mode Kanji
 $params.level:=QR Correction Level L
 
-$qr:=qrcode ("www.wakanda.org";$params)
+$qr:=qrcode ("あいうえお";$params)
 
-WRITE PICTURE FILE:C680(System folder:C487(Desktop:K41:16)+"qr-test.png";$qr.image)
+WRITE PICTURE FILE:C680(System folder:C487(Desktop:K41:16)+"あいうえお (QR Mode Kanji).png";$qr.image)
 

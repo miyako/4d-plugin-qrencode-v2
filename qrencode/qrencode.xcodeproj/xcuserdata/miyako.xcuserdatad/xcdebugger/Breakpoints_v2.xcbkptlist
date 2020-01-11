@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "0CCE6BB3-AAB9-4099-8AB9-B20C2C03744C"
    type = "1"
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "6AC3B469-F570-4143-BA44-5DF4E46F52D9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -15,7 +17,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "153"
             endingLineNumber = "153"
-            landmarkName = "qrencode(PA_PluginParameters params)"
+            landmarkName = "qrencode(params)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

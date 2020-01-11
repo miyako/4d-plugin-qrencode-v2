@@ -171,13 +171,13 @@
 		"stamp": "2019-07-02T23:15:40.975Z"
 	},
 	"Sources/Methods/TEST.4dm": {
-		"startSelection": 0,
-		"endSelection": 0,
-		"firstSelectedLine": 0,
-		"lastSelectedLine": 0,
+		"startSelection": 63,
+		"endSelection": 63,
+		"firstSelectedLine": 14,
+		"lastSelectedLine": 14,
 		"folding": [],
 		"bookmarks": [],
-		"stamp": "2019-10-11T15:13:57.000Z"
+		"stamp": "2019-12-09T06:58:29.979Z"
 	},
 	"Sources/Methods/TEST_v17.4dm": {
 		"startSelection": 0,
