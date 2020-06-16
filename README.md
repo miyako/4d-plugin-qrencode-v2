@@ -14,3 +14,22 @@ QR code generator based on [libqrencode](https://fukuchi.org/works/qrencode/).
 ### Syntax
 
 [miyako.github.io](https://miyako.github.io/2019/10/11/4d-plugin-qrencode.html)
+
+### Usage
+
+```4d
+C_OBJECT($Barcode_o;$Barcode_Params_o)
+
+$Barcode_Params_o:=New object
+$Barcode_Params_o.dpi:=96
+$Barcode_Params_o.margin:=1
+$Barcode_Params_o.size:=9
+$Barcode_Params_o.version:=1
+$Barcode_Params_o.format:=QR Format PNG
+$Barcode_Params_o.mode:=QR Mode Latin
+$Barcode_Params_o.level:=QR Correction Level L
+
+$Barcode_o:=qrcode ("Foobar";$Barcode_Params_o)
+
+WRITE PICTURE FILE(System folder(Desktop)+"qrcode.png";$Barcode_o.image)
+```
