@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <xliff version="1.0" xmlns:d4="http://www.4d.com/d4-ns">
     <header>
         <note>qrencode</note>
@@ -19,7 +19,7 @@
             <source>QR Mode Micro</source>
         </trans-unit>
         <trans-unit d4:value="4:L" id="FD68E8BC1CB44384BE1561FF5597B81E.4">
-            <source>QR Mode Latin</source>
+            <source>QR Mode Swiss</source>
         </trans-unit>
     </group>
     <group resname="themes">

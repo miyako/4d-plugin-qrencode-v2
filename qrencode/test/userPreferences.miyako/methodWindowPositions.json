@@ -144,15 +144,21 @@
 		"height": 762
 	},
 	"Sources/Methods/TEST.4dm": {
-		"left": 788,
-		"top": 342,
+		"left": 425,
+		"top": 224,
 		"width": 1048,
-		"height": 789
+		"height": 757
 	},
 	"Sources/Methods/TEST_v17.4dm": {
 		"left": 450,
 		"top": 163,
 		"width": 877,
 		"height": 662
+	},
+	"Sources/Methods/TEST_1.4dm": {
+		"left": 154,
+		"top": 253,
+		"width": 950,
+		"height": 697
 	}
 }
