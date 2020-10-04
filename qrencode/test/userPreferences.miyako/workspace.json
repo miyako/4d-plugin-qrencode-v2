@@ -1,3 +1,7 @@
 ﻿{
-	"editors": []
+	"editors": [
+		{
+			"type": "explorer"
+		}
+	]
 }
