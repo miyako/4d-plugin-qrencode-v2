@@ -1,11 +1,9 @@
+![platform](https://img.shields.io/static/v1?label=platform&message=osx-64%20|%20win-32%20|%20win-64&color=blue)
+[![license](https://img.shields.io/github/license/miyako/4d-plugin-qrencode-v2)](LICENSE)
+![downloads](https://img.shields.io/github/downloads/miyako/4d-plugin-qrencode-v2/total)
+
 # 4d-plugin-qrencode-v2
 QR code generator based on [libqrencode](https://fukuchi.org/works/qrencode/).
-
-### Platform
-
-| carbon | cocoa | win32 | win64 |
-|:------:|:-----:|:---------:|:---------:|
-||<img src="https://cloud.githubusercontent.com/assets/1725068/22371562/1b091f0a-e4db-11e6-8458-8653954a7cce.png" width="24" height="24" />|<img src="https://cloud.githubusercontent.com/assets/1725068/22371562/1b091f0a-e4db-11e6-8458-8653954a7cce.png" width="24" height="24" />|<img src="https://cloud.githubusercontent.com/assets/1725068/22371562/1b091f0a-e4db-11e6-8458-8653954a7cce.png" width="24" height="24" />|
 
 ### Version
 
