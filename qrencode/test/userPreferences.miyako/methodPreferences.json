@@ -173,8 +173,8 @@
 	"Sources/Methods/TEST.4dm": {
 		"startSelection": 0,
 		"endSelection": 0,
-		"firstSelectedLine": 13,
-		"lastSelectedLine": 13,
+		"firstSelectedLine": 1,
+		"lastSelectedLine": 2,
 		"folding": [],
 		"bookmarks": [],
 		"stamp": "2019-12-09T06:58:29.979Z"
@@ -189,13 +189,13 @@
 		"stamp": "2019-07-07T00:13:49.000Z"
 	},
 	"Sources/Methods/TEST_1.4dm": {
-		"startSelection": 0,
-		"endSelection": 0,
-		"firstSelectedLine": 12,
-		"lastSelectedLine": 0,
+		"startSelection": 46,
+		"endSelection": 46,
+		"firstSelectedLine": 11,
+		"lastSelectedLine": 11,
 		"folding": [],
 		"bookmarks": [],
-		"stamp": "2020-06-15T15:01:02.796Z"
+		"stamp": "2021-02-03T02:39:00.431Z"
 	},
 	"Sources/Methods/TEST_2.4dm": {
 		"startSelection": 35,

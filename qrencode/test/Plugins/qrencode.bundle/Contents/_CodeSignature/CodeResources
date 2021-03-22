@@ -8,7 +8,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			XmhXPsCyMNgqTfxA5x9mh7+PYPU=
+			IyJWqTGmKbP+9JX0HogGLvGF9Ss=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -35,7 +35,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1ZuQOuiLr2EyopqztcV9BrQfyK8HJHxZKxGodIMR6W4=
+			1PAsAOOP5fa2514E3F+8M91saXCPK6ZsMcfXWUGHvUA=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -52,13 +52,6 @@
 			<key>hash2</key>
 			<data>
 			OIqk9EfTt5qzLhI7hGdDsb6VQerdkT2hjUl/30WvHm4=
-			</data>
-		</dict>
-		<key>Windows/qrencode.4DX</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			sP2i9LcVUQBuzLeG8hiAnjd02o+ADmjHeCTJJ1cUE6w=
 			</data>
 		</dict>
 		<key>Windows64/qrencode.4DX</key>
