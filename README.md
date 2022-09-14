@@ -3,8 +3,6 @@
 [![license](https://img.shields.io/github/license/miyako/4d-plugin-qrencode-v2)](LICENSE)
 ![downloads](https://img.shields.io/github/downloads/miyako/4d-plugin-qrencode-v2/total)
 
-**Note**: for v17 and earlier, move `manifest.json` to `Contents`
-
 # 4d-plugin-qrencode-v2
 QR code generator based on [libqrencode](https://fukuchi.org/works/qrencode/).
 
