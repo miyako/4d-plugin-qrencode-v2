@@ -8,7 +8,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			IyJWqTGmKbP+9JX0HogGLvGF9Ss=
+			cSnUUrWPPuqkX2xxwnFnbdVsN7I=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -26,6 +26,10 @@
 	<dict>
 		<key>QuickLook/Thumbnail.png</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			hC+U8EqvyIRM1lLakHLfvl4V9Tc=
+			</data>
 			<key>hash2</key>
 			<data>
 			nGfrvibB5KlzvZgF4Bra+l0HpRloxismgTLePnOwCdk=
@@ -33,15 +37,23 @@
 		</dict>
 		<key>Resources/English.lproj/InfoPlist.strings</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			cSnUUrWPPuqkX2xxwnFnbdVsN7I=
+			</data>
 			<key>hash2</key>
 			<data>
-			1PAsAOOP5fa2514E3F+8M91saXCPK6ZsMcfXWUGHvUA=
+			hhdyRN8ZkHVzNISksAE57htLuBoYBPNu+EL1zn9cRzI=
 			</data>
 			<key>optional</key>
 			<true/>
 		</dict>
 		<key>Resources/constants.xlf</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			8i0UwlveELJz/IwhFZYKDnywrr0=
+			</data>
 			<key>hash2</key>
 			<data>
 			KTeE8TH+0uK8yU4cX1iIBP534aZn5J6hpWnhC6nR4ok=
@@ -49,6 +61,10 @@
 		</dict>
 		<key>Resources/manifest.json</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			W9bWmL8iC3Nfc/Knvlmz+QZGR+M=
+			</data>
 			<key>hash2</key>
 			<data>
 			OIqk9EfTt5qzLhI7hGdDsb6VQerdkT2hjUl/30WvHm4=
@@ -56,6 +72,10 @@
 		</dict>
 		<key>Windows64/qrencode.4DX</key>
 		<dict>
+			<key>hash</key>
+			<data>
+			WxDU1S6/RXwuW8b+qPdFh2wigas=
+			</data>
 			<key>hash2</key>
 			<data>
 			WycEWWKoMgVjO7mRDozOU8fPtvP4EaYN3gcc9yobk34=
