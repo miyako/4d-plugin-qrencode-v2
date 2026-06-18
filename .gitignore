@@ -11,3 +11,4 @@ qrencode/test/Project/Sources/dependencies.json
 qrencode/test/Data/data.4DD
 qrencode/test/Data/data.journal
 qrencode/test/Data/data.Match
+qrencode/test/Plugins/XCBuildData/*
