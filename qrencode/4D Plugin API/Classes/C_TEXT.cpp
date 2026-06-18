@@ -55,15 +55,17 @@ void C_TEXT::setUTF16String(const PA_Unistring* pString)
 #ifdef __OBJC__	
 void C_TEXT::setUTF16String(NSString* pString)
 {
-	uint32_t len = [pString length];
-	uint32_t size = (len * sizeof(PA_Unichar)) + sizeof(PA_Unichar);
-	std::vector<uint8_t> buf(size);	
-	
-    if([pString getCString:(char *)&buf[0] maxLength:size encoding:NSUnicodeStringEncoding]){
-		this->setUTF16String((const PA_Unichar *)&buf[0], len);	
-    }else{
-        this->setUTF16String(@"");	
-    }
+    NSUInteger len = [pString length];
+//	uint32_t size = (len * sizeof(PA_Unichar)) + sizeof(PA_Unichar);
+//	std::vector<uint8_t> buf(size);
+    std::vector<PA_Unichar> buf(len + 1, 0);
+    [pString getCharacters:buf.data() range:NSMakeRange(0, len)];
+    this->setUTF16String(buf.data(), (uint32_t)len);
+//    if([pString getCString:(char *)&buf[0] maxLength:size encoding:NSUnicodeStringEncoding]){
+//		this->setUTF16String((const PA_Unichar *)&buf[0], len);	
+//    }else{
+//        this->setUTF16String(@"");	
+//    }
 }
 
 NSMutableString* C_TEXT::copyUTF16MutableString()
@@ -172,13 +174,15 @@ void C_TEXT::convertFromUTF8(const CUTF8String* fromString, CUTF16String* toStri
 #else
 	CFStringRef str = CFStringCreateWithBytes(kCFAllocatorDefault, fromString->c_str(), fromString->length(), kCFStringEncodingUTF8, true);
 	if(str){
-		int len = CFStringGetLength(str);
+        CFIndex len = CFStringGetLength(str);
 		std::vector<uint8_t> buf((len+1) * sizeof(PA_Unichar));
 		CFStringGetCharacters(str, CFRangeMake(0, len), (UniChar *)&buf[0]);
 		*toString = CUTF16String((const PA_Unichar *)&buf[0]);
 		CFRelease(str);
-	}
-#endif	
+    }else{
+        *toString = CUTF16String((const PA_Unichar *)L"");
+    }
+#endif
 }
 
 void C_TEXT::convertToUTF8(const CUTF16String* fromString, CUTF8String* toString)

@@ -1,3 +1,21 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE base SYSTEM "http://www.4d.com/dtd/2007/base.dtd" >
-<base name="" uuid="10ACBA64750E46DEADE197C3F21A82A4" collation_locale="ja"/>
+<base name="test" uuid="10ACBA64750E46DEADE197C3F21A82A4" collation_locale="en">
+	<schema name="DEFAULT_SCHEMA"/>
+	<table name="Table_1" uuid="DD0499246A1E495BBB956AE0942A5DA0" id="1">
+		<field name="ID" uuid="6761106281764D6681BF56076CA3079B" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="NewCase_ID" uuid="1B1CB48482514CDBB9718081588B0A03" type="10" store_as_UUID="true" never_null="true" id="2"/>
+		<primary_key field_name="ID" field_uuid="6761106281764D6681BF56076CA3079B"/>
+		<table_extra>
+			<editor_table_info displayable_fields_count="6">
+				<color red="255" green="255" blue="255" alpha="0"/>
+				<coordinates left="180.60546875" top="226.52734375" width="120" height="167.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<index kind="regular" unique_keys="true" uuid="11A9AF3A03304D238FE7CD2BBF0CAA87" type="7">
+		<field_ref uuid="6761106281764D6681BF56076CA3079B" name="ID">
+			<table_ref uuid="DD0499246A1E495BBB956AE0942A5DA0" name="Table_1"/>
+		</field_ref>
+	</index>
+</base>

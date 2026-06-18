@@ -1,1 +1,13 @@
 qrencode/build/*
+qrencode/test/userPreferences.*
+qrencode/test/Project/DerivedData/*
+qrencode/test/Libraries/lib4d-arm64.dylib
+qrencode/test/Data/Logs/test_symbols.txt
+qrencode/test/Logs/test_symbols.txt
+qrencode/qrencode.xcodeproj/xcuserdata/miyako.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+qrencode/qrencode.xcodeproj/xcshareddata/xcschemes/qrencode.xcscheme
+qrencode/qrencode.xcodeproj/project.xcworkspace/xcuserdata/miyako.xcuserdatad/UserInterfaceState.xcuserstate
+qrencode/test/Project/Sources/dependencies.json
+qrencode/test/Data/data.4DD
+qrencode/test/Data/data.journal
+qrencode/test/Data/data.Match
