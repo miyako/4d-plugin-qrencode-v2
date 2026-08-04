@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by 4D Developer on:Thu, 18 Jun 2026 05:48:19 GMT-->
+<ErrorList>
+	<Method name="QRCH">
+		<Warning line="1">The typing directive &apos;C_OBJECT&apos; is deprecated. Better use the &apos;var&apos; keyword with corresponding type. (551.2)</Warning>
+		<Warning line="2">The parameter typing directive &apos;C_PICTURE&apos; is deprecated. Better use the &apos;#DECLARE&apos; keyword. (551.3)</Warning>
+		<Warning line="45">Redefinition of variable $1. (550.10)</Warning>
+		<Warning line="45">Redefinition of variable $QRCH. (550.10)</Warning>
+		<Warning line="45">The typing directive &apos;C_OBJECT&apos; is deprecated. Better use the &apos;var&apos; keyword with corresponding type. (551.2)</Warning>
+		<Warning line="46">Redefinition of variable $0. (550.10)</Warning>
+		<Warning line="46">The parameter typing directive &apos;C_PICTURE&apos; is deprecated. Better use the &apos;#DECLARE&apos; keyword. (551.3)</Warning>
+	</Method>
+	<Method name="TEST_1">
+		<Warning line="1">The typing directive &apos;C_OBJECT&apos; is deprecated. Better use the &apos;var&apos; keyword with corresponding type. (551.2)</Warning>
+	</Method>
+	<Method name="TEST_2">
+		<Warning line="1">The typing directive &apos;C_OBJECT&apos; is deprecated. Better use the &apos;var&apos; keyword with corresponding type. (551.2)</Warning>
+		<Warning line="23">The typing directive &apos;C_OBJECT&apos; is deprecated. Better use the &apos;var&apos; keyword with corresponding type. (551.2)</Warning>
+		<Warning line="26">The typing directive &apos;C_OBJECT&apos; is deprecated. Better use the &apos;var&apos; keyword with corresponding type. (551.2)</Warning>
+		<Warning line="32">The typing directive &apos;C_OBJECT&apos; is deprecated. Better use the &apos;var&apos; keyword with corresponding type. (551.2)</Warning>
+		<Warning line="39">The typing directive &apos;C_OBJECT&apos; is deprecated. Better use the &apos;var&apos; keyword with corresponding type. (551.2)</Warning>
+		<Warning line="50">The typing directive &apos;C_OBJECT&apos; is deprecated. Better use the &apos;var&apos; keyword with corresponding type. (551.2)</Warning>
+		<Warning line="57">The typing directive &apos;C_OBJECT&apos; is deprecated. Better use the &apos;var&apos; keyword with corresponding type. (551.2)</Warning>
+		<Warning line="64">The typing directive &apos;C_OBJECT&apos; is deprecated. Better use the &apos;var&apos; keyword with corresponding type. (551.2)</Warning>
+	</Method>
+	<Method name="TEST">
+		<Warning line="1">The typing directive &apos;C_TEXT&apos; is deprecated. Better use the &apos;var&apos; keyword with corresponding type. (551.2)</Warning>
+		<Warning line="2">The typing directive &apos;C_PICTURE&apos; is deprecated. Better use the &apos;var&apos; keyword with corresponding type. (551.2)</Warning>
+	</Method>
+</ErrorList>

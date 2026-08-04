@@ -1,0 +1,12 @@
+{
+	"Table_1Entity": {
+		"functions": {
+			"getCaseQRCode": {
+				"id": 2147483639,
+				"local": true
+			}
+		},
+		"extends": "Entity",
+		"constructorID": 2147483640
+	}
+}

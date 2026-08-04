@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><preferences stamp="59">
+	<com.4d>
+		<database>
+			<data_storage data_path="Data/data.4DD"/>
+		</database>
+		<general last_opening_mode="1"/>
+		<server>
+			<misc open_admin_window_at_startup="false"/>
+		</server>
+	</com.4d>
+	<internal_prefs_4d>
+		<windows>
+			<window name="main" left="40" top="143" width="600" height="450"/>
+		</windows>
+		<explorer default_page="3" expanded="true" list_components_opened=""/>
+	</internal_prefs_4d>
+</preferences>
