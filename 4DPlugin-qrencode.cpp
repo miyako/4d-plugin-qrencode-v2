@@ -9,8 +9,40 @@
  # --------------------------------------------------------------------------------*/
 
 #include "4DPlugin-qrencode.h"
+#include <cmath>
 
 #pragma mark -
+
+/*
+ Reads a numeric option from the caller-supplied options object and returns it
+ as an int, safely:
+   - ob_get_n() returns a plain double from untrusted 4D-side input, so NaN/Inf
+     and out-of-range values are possible; casting those straight to int/enum
+     is undefined behavior.
+   - the result is clamped to [lo, hi] BEFORE the cast, so every downstream
+     consumer (allocation sizing, loop bounds, library calls) only ever sees a
+     bounded, finite value.
+   - if the key is missing/non-numeric, ob_get_n() is expected to return 0;
+     `fallback` is used whenever the read value isn't finite.
+ */
+static int get_bounded_int_option(PA_ObjectRef o, const wchar_t *key, int fallback, int lo, int hi) {
+    double v = ob_get_n(o, key);
+    if (!std::isfinite(v)) {
+        v = fallback;
+    }
+    if (v < (double)lo) {
+        v = lo;
+    }
+    if (v > (double)hi) {
+        v = hi;
+    }
+    return (int)v;
+}
+
+#define QR_OPTION_MAX_MARGIN  100
+#define QR_OPTION_MAX_SIZE    100
+#define QR_OPTION_MAX_DPI     2400
+#define QR_OPTION_MAX_VERSION 40
 
 void PluginMain(PA_long32 selector, PA_PluginParameters params) {
     
@@ -40,149 +72,155 @@ void PluginMain(PA_long32 selector, PA_PluginParameters params) {
 
 void qrencode(PA_PluginParameters params) {
     
-    output_type_t type = QR_OUTPUT_PNG;
-    int margin = 0;
-    int size = 3;
-    int dpi = 72;
-    int version = 1;
-    QRencodeMode mode = QR_MODE_8;
-    QRecLevel level = QR_ECLEVEL_L;
-    int micro = 0;
-    int swiss = 0;
-    
     PA_ObjectRef returnValue = PA_CreateObject();
-    PA_ObjectRef options = PA_GetObjectParameter(params, 2);
     
-    if(options) {
-
-        level = (QRecLevel)(int)ob_get_n(options, L"level");
-        level = ((level <= QR_ECLEVEL_H) & (level >= QR_ECLEVEL_L)) ? level : QR_ECLEVEL_L;
-        
-        int _mode = (QRencodeMode)(int)ob_get_n(options, L"mode");
-        
-        if(_mode & QR_Mode_Kanji) {
-            mode  = QR_MODE_KANJI;
-        }else{
-            mode  = QR_MODE_8;
-        }
-        
-        if(_mode & QR_Mode_Micro) {
-            micro  = 1;
-        }else{
-            micro  = 0;
-        }
-
-        if(_mode & QR_Mode_Swiss) {
-            swiss  = 1;
-        }else{
-            swiss  = 0;
-        }
-        
-        type = (output_type_t)(int)ob_get_n(options, L"format");
-        type = type == QR_OUTPUT_SVG ? QR_OUTPUT_SVG : QR_OUTPUT_PNG;
-        
-        margin = (int)ob_get_n(options, L"margin");
-        margin = margin < 0 ? 0 : margin;
-
-        size = (int)ob_get_n(options, L"size");
-        size = size > 0 ? size : 3;
-
-        dpi = (int)ob_get_n(options, L"dpi");
-        dpi = dpi > 0 ? dpi : 72;
-        
-        version = (int)ob_get_n(options, L"version");
-        version = version > 0 ? version : 1;
-        
-    }
-    
-    C_TEXT data;
-    data.setUTF16String(PA_GetStringParameter(params, 1));
-
-    unsigned int len = 0;
-    
-    uint32_t dataSize = (data.getUTF16Length() * sizeof(PA_Unichar) * 2)+ sizeof(uint8_t);
-    std::vector<char> buf(dataSize);
-    
-    PA_4DCharSet encoding;
-    
-    switch (mode)
+    try
     {
-        case QR_MODE_KANJI:
-        encoding = eVTC_SHIFT_JIS;
-        break;
-        default:
-        encoding = eVTC_UTF_8;
-        break;
-    }
-    
-    if (swiss)
-    {
-        encoding = eVTC_ISO_8859_1;
-        mode = QR_MODE_AN;
-    }
-    
-    len = PA_ConvertCharsetToCharset((char *)data.getUTF16StringPtr(),
-                                     data.getUTF16Length() * sizeof(PA_Unichar),
-                                     eVTC_UTF_16,
-                                     (char *)&buf[0],
-                                     dataSize,
-                                     encoding);
-    
-    QRcode *qr = NULL;
-    
-    if(micro){
+        output_type_t type = QR_OUTPUT_PNG;
+        int margin = 0;
+        int size = 3;
+        int dpi = 72;
+        int version = 1;
+        QRencodeMode mode = QR_MODE_8;
+        QRecLevel level = QR_ECLEVEL_L;
+        int micro = 0;
+        int swiss = 0;
         
-        if(mode == QR_MODE_KANJI){
-            
-            qr = QRcode_encodeStringMQR((const char *)&buf[0],
-                                        version,
-                                        level,
-                                        mode,
-                                        1);
-            
-        }else{
-            
-            qr = QRcode_encodeDataMQR((int)len,
-                                      (const unsigned char *)&buf[0],
-                                      version,
-                                      level);
-        }
+        PA_ObjectRef options = PA_GetObjectParameter(params, 2);
         
-    }else{
-        
-        if(mode == QR_MODE_KANJI){
+        if(options) {
+
+            level = (QRecLevel)get_bounded_int_option(options, L"level", QR_ECLEVEL_L, QR_ECLEVEL_L, QR_ECLEVEL_H);
             
-            qr = QRcode_encodeString((const char *)&buf[0],
-                                     version,
-                                     level,
-                                     mode,
-                                     1);
+            int _mode = get_bounded_int_option(options, L"mode", QR_Mode_Unicode, 0,
+                                                (QR_Mode_Kanji | QR_Mode_Micro | QR_Mode_Swiss));
             
-        }else{
+            if(_mode & QR_Mode_Kanji) {
+                mode  = QR_MODE_KANJI;
+            }else{
+                mode  = QR_MODE_8;
+            }
             
-            qr = QRcode_encodeData((int)len,
-                                   (const unsigned char *)&buf[0],
-                                   version,
-                                   level);
+            if(_mode & QR_Mode_Micro) {
+                micro  = 1;
+            }else{
+                micro  = 0;
+            }
+
+            if(_mode & QR_Mode_Swiss) {
+                swiss  = 1;
+            }else{
+                swiss  = 0;
+            }
+            
+            type = (output_type_t)get_bounded_int_option(options, L"format", QR_OUTPUT_PNG, QR_OUTPUT_PNG, QR_OUTPUT_SVG);
+            
+            /* size/margin/dpi/version are bounded BEFORE the cast (see get_bounded_int_option) -
+               these are what drive allocation sizes and loop counts in toPNG()/toPNGs() below,
+               so an unbounded value here was a real freeze/DoS vector, not just a style nit */
+            margin = get_bounded_int_option(options, L"margin", 0, 0, QR_OPTION_MAX_MARGIN);
+            size = get_bounded_int_option(options, L"size", 3, 1, QR_OPTION_MAX_SIZE);
+            dpi = get_bounded_int_option(options, L"dpi", 72, 1, QR_OPTION_MAX_DPI);
+            version = get_bounded_int_option(options, L"version", 1, 1, QR_OPTION_MAX_VERSION);
             
         }
         
-    }
-    
-    if(qr){
+        C_TEXT data;
+        data.setUTF16String(PA_GetStringParameter(params, 1));
+
+        unsigned int len = 0;
         
-        switch(type){
-            case QR_OUTPUT_PNG:
-            toPNG(qr, margin, size, dpi, returnValue);
+        uint32_t dataSize = (data.getUTF16Length() * sizeof(PA_Unichar) * 2)+ sizeof(uint8_t);
+        std::vector<char> buf(dataSize);
+        
+        PA_4DCharSet encoding;
+        
+        switch (mode)
+        {
+            case QR_MODE_KANJI:
+            encoding = eVTC_SHIFT_JIS;
             break;
-            
-            case QR_OUTPUT_SVG:
-            toSVG(qr, margin, size, dpi, returnValue);
+            default:
+            encoding = eVTC_UTF_8;
             break;
         }
         
-        QRcode_free(qr);
+        if (swiss)
+        {
+            encoding = eVTC_ISO_8859_1;
+            mode = QR_MODE_AN;
+        }
         
+        len = PA_ConvertCharsetToCharset((char *)data.getUTF16StringPtr(),
+                                         data.getUTF16Length() * sizeof(PA_Unichar),
+                                         eVTC_UTF_16,
+                                         (char *)&buf[0],
+                                         dataSize,
+                                         encoding);
+        
+        QRcode *qr = NULL;
+        
+        if(micro){
+            
+            if(mode == QR_MODE_KANJI){
+                
+                qr = QRcode_encodeStringMQR((const char *)&buf[0],
+                                            version,
+                                            level,
+                                            mode,
+                                            1);
+                
+            }else{
+                
+                qr = QRcode_encodeDataMQR((int)len,
+                                          (const unsigned char *)&buf[0],
+                                          version,
+                                          level);
+            }
+            
+        }else{
+            
+            if(mode == QR_MODE_KANJI){
+                
+                qr = QRcode_encodeString((const char *)&buf[0],
+                                         version,
+                                         level,
+                                         mode,
+                                         1);
+                
+            }else{
+                
+                qr = QRcode_encodeData((int)len,
+                                       (const unsigned char *)&buf[0],
+                                       version,
+                                       level);
+                
+            }
+            
+        }
+        
+        if(qr){
+            
+            switch(type){
+                case QR_OUTPUT_PNG:
+                toPNG(qr, margin, size, dpi, returnValue);
+                break;
+                
+                case QR_OUTPUT_SVG:
+                toSVG(qr, margin, size, dpi, returnValue);
+                break;
+            }
+            
+            QRcode_free(qr);
+            
+        }
+    }
+    catch(...)
+    {
+        /* swallow: returnValue (created above, outside the try) is whatever was
+           populated so far (likely still empty) - falling through to
+           PA_ReturnObject below is what matters, so the host isn't left
+           waiting on a return that never comes */
     }
     
     PA_ReturnObject(params, returnValue);    
@@ -190,114 +228,115 @@ void qrencode(PA_PluginParameters params) {
 
 void qrcode_array(PA_PluginParameters params) {
     
-    output_type_t type = QR_OUTPUT_PNG;
-    int margin = 0;
-    int size = 3;
-    int dpi = 72;
-    int version = 1;
-    QRencodeMode mode = QR_MODE_8;
-    QRecLevel level = QR_ECLEVEL_L;
-    int micro = 0;
-    int swiss = 0;
-    
     PA_CollectionRef returnValue = PA_CreateCollection();
-    PA_ObjectRef options = PA_GetObjectParameter(params, 2);
     
-    if(options) {
+    try
+    {
+        output_type_t type = QR_OUTPUT_PNG;
+        int margin = 0;
+        int size = 3;
+        int dpi = 72;
+        int version = 1;
+        QRencodeMode mode = QR_MODE_8;
+        QRecLevel level = QR_ECLEVEL_L;
+        int micro = 0;
+        int swiss = 0;
         
-        level = (QRecLevel)(int)ob_get_n(options, L"level");
-        level = ((level <= QR_ECLEVEL_H) & (level >= QR_ECLEVEL_L)) ? level : QR_ECLEVEL_L;
+        PA_ObjectRef options = PA_GetObjectParameter(params, 2);
         
-        int _mode = (QRencodeMode)(int)ob_get_n(options, L"mode");
-        
-        if(_mode & QR_Mode_Kanji) {
-            mode  = QR_MODE_KANJI;
-        }else{
-            mode  = QR_MODE_8;
+        if(options) {
+            
+            level = (QRecLevel)get_bounded_int_option(options, L"level", QR_ECLEVEL_L, QR_ECLEVEL_L, QR_ECLEVEL_H);
+            
+            int _mode = get_bounded_int_option(options, L"mode", QR_Mode_Unicode, 0,
+                                                (QR_Mode_Kanji | QR_Mode_Micro | QR_Mode_Swiss));
+            
+            if(_mode & QR_Mode_Kanji) {
+                mode  = QR_MODE_KANJI;
+            }else{
+                mode  = QR_MODE_8;
+            }
+            
+            if(_mode & QR_Mode_Micro) {
+                micro  = 1;
+            }else{
+                micro  = 0;
+            }
+            
+            if(_mode & QR_Mode_Swiss) {
+                swiss  = 1;
+            }else{
+                swiss  = 0;
+            }
+            
+            type = (output_type_t)get_bounded_int_option(options, L"format", QR_OUTPUT_PNG, QR_OUTPUT_PNG, QR_OUTPUT_SVG);
+            
+            margin = get_bounded_int_option(options, L"margin", 0, 0, QR_OPTION_MAX_MARGIN);
+            size = get_bounded_int_option(options, L"size", 3, 1, QR_OPTION_MAX_SIZE);
+            dpi = get_bounded_int_option(options, L"dpi", 72, 1, QR_OPTION_MAX_DPI);
+            version = get_bounded_int_option(options, L"version", 1, 1, QR_OPTION_MAX_VERSION);
+            
         }
         
-        if(_mode & QR_Mode_Micro) {
-            micro  = 1;
-        }else{
-            micro  = 0;
-        }
-        
-        if(_mode & QR_Mode_Swiss) {
-            swiss  = 1;
-        }else{
-            swiss  = 0;
-        }
-        
-        type = (output_type_t)(int)ob_get_n(options, L"format");
-        type = type == QR_OUTPUT_SVG ? QR_OUTPUT_SVG : QR_OUTPUT_PNG;
-        
-        margin = (int)ob_get_n(options, L"margin");
-        margin = margin < 0 ? 0 : margin;
-        
-        size = (int)ob_get_n(options, L"size");
-        size = size > 0 ? size : 3;
-        
-        dpi = (int)ob_get_n(options, L"dpi");
-        dpi = dpi > 0 ? dpi : 72;
-        
-        version = (int)ob_get_n(options, L"version");
-        version = version > 0 ? version : 1;
-        
-    }
-    
-    C_TEXT data;
-    data.setUTF16String(PA_GetStringParameter(params, 1));
+        C_TEXT data;
+        data.setUTF16String(PA_GetStringParameter(params, 1));
 
-    unsigned int len = 0;
-    
-    uint32_t dataSize = (data.getUTF16Length() * sizeof(PA_Unichar) * 2)+ sizeof(uint8_t);
-    std::vector<char> buf(dataSize);
-    
-    PA_4DCharSet encoding;
-    
-    switch (mode)
-    {
-        case QR_MODE_KANJI:
-        encoding = eVTC_SHIFT_JIS;
-        break;
-        default:
-        encoding = eVTC_UTF_8;
-        break;
-    }
-    
-    len = PA_ConvertCharsetToCharset((char *)data.getUTF16StringPtr(),
-                                     data.getUTF16Length() * sizeof(PA_Unichar),
-                                     eVTC_UTF_16,
-                                     (char *)&buf[0],
-                                     dataSize,
-                                     encoding);
-    
-    QRcode_List *qrl = NULL;
-    
-    if (mode == QR_MODE_KANJI)
-    {
-        qrl = QRcode_encodeStringStructured((const char *)&buf[0],
-                                            version,
-                                            level,
-                                            mode,
-                                            1);
-    }else
-    {
-        qrl = QRcode_encodeDataStructured((int)len,
-                                          (const unsigned char *)&buf[0],
-                                          version,
-                                          level);
-    }
-    
-    if (qrl)
-    {
-        int count = QRcode_List_size(qrl);
-        QRcode *qr;
-        for (unsigned int i = 0; i < count; ++i)
+        unsigned int len = 0;
+        
+        uint32_t dataSize = (data.getUTF16Length() * sizeof(PA_Unichar) * 2)+ sizeof(uint8_t);
+        std::vector<char> buf(dataSize);
+        
+        PA_4DCharSet encoding;
+        
+        switch (mode)
         {
-            if(qrl)
+            case QR_MODE_KANJI:
+            encoding = eVTC_SHIFT_JIS;
+            break;
+            default:
+            encoding = eVTC_UTF_8;
+            break;
+        }
+        
+        len = PA_ConvertCharsetToCharset((char *)data.getUTF16StringPtr(),
+                                         data.getUTF16Length() * sizeof(PA_Unichar),
+                                         eVTC_UTF_16,
+                                         (char *)&buf[0],
+                                         dataSize,
+                                         encoding);
+        
+        QRcode_List *qrl = NULL;
+        
+        if (mode == QR_MODE_KANJI)
+        {
+            qrl = QRcode_encodeStringStructured((const char *)&buf[0],
+                                                version,
+                                                level,
+                                                mode,
+                                                1);
+        }else
+        {
+            qrl = QRcode_encodeDataStructured((int)len,
+                                              (const unsigned char *)&buf[0],
+                                              version,
+                                              level);
+        }
+        
+        if (qrl)
+        {
+            /* keep the list head separate from the traversal cursor - freeing
+               "qrl" itself here (as the original code did) frees whatever the
+               cursor happens to point to AFTER walking off the end of the
+               list (i.e. NULL on a normal pass), which leaks every QRcode
+               node and its bitmap data on every call */
+            QRcode_List *head = qrl;
+            QRcode_List *cur = qrl;
+            
+            int count = QRcode_List_size(qrl);
+            QRcode *qr;
+            for (int i = 0; i < count && cur != NULL; ++i)
             {
-                qr = qrl->code;
+                qr = cur->code;
                 
                 switch (type)
                 {
@@ -310,14 +349,15 @@ void qrcode_array(PA_PluginParameters params) {
                     break;
                 }
                 
-                qrl = qrl->next;
+                cur = cur->next;
             }
-            else
-            {
-                break;
-            }
+            QRcode_List_free(head);
         }
-        QRcode_List_free(qrl);
+    }
+    catch(...)
+    {
+        /* swallow: fall through to PA_ReturnCollection below so the host
+           isn't left waiting on a return that never comes */
     }
     
     PA_ReturnCollection(params, returnValue);
