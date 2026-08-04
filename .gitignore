@@ -11,3 +11,8 @@ qrencode/test/Project/Sources/dependencies.json
 qrencode/test/Data/data.4DD
 qrencode/test/Data/data.journal
 qrencode/test/Data/data.Match
+qrencode/.vs/*
+qrencode/test/Plugins/qrencode.bundle/Contents/Windows64/qrencode.exp
+qrencode/test/Plugins/qrencode.bundle/Contents/Windows64/qrencode.lib
+qrencode/test/Plugins/qrencode.bundle/Contents/Windows64/qrencode.pdb
+qrencode/Objs/*

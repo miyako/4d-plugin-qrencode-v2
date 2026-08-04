@@ -33,3 +33,4 @@ exposed Function getCaseQRCode()->$qrCodeImage : Picture
 	$barcode:=qrcode(This:C1470.NewCase_ID; $params)
 	$qrCodeImage:=$barcode.image
 	
+	TRACE:C157
