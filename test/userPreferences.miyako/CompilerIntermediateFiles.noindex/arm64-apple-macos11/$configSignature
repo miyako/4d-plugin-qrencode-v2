@@ -1,0 +1,7 @@
+#39
+Apple clang version 17.0.0 (clang-1700.3.19.1)
+Target: arm64-apple-darwin25.1.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk

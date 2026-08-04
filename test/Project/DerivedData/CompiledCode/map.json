@@ -1,0 +1,57 @@
+{
+	"map": [
+		{
+			"id": 2147483647,
+			"path": "Sources/Methods/issue_6.4dm"
+		},
+		{
+			"id": 2147483646,
+			"path": "Sources/Methods/TEST.4dm"
+		},
+		{
+			"id": 2147483645,
+			"path": "Sources/Methods/TEST_3.4dm"
+		},
+		{
+			"id": 2147483644,
+			"path": "Sources/Methods/TEST_2.4dm"
+		},
+		{
+			"id": 2147483643,
+			"path": "Sources/Methods/TEST_1.4dm"
+		},
+		{
+			"id": 2147483642,
+			"path": "Sources/Methods/QRCH.4dm"
+		},
+		{
+			"id": 2147483641,
+			"path": "Sources/Classes/Table_1Entity.4dm"
+		},
+		{
+			"id": 2147483640,
+			"path": "Sources/Classes/Table_1Entity.4dm",
+			"function": "#",
+			"parameters": [
+				{
+					"type": 0
+				}
+			]
+		},
+		{
+			"id": 2147483639,
+			"path": "Sources/Classes/Table_1Entity.4dm",
+			"function": "getCaseQRCode",
+			"parameters": [
+				{
+					"name": "qrCodeImage",
+					"type": 286
+				}
+			]
+		}
+	],
+	"version": 6144,
+	"targets": {
+		"arm64_macOS_lib": true
+	}
+}

@@ -1,0 +1,8 @@
+Asm4d_Proc proc_ISSUE__6;
+Asm4d_Proc proc_TEST_2EgetCaseQRCode;
+Asm4d_Proc proc_TEST_3Aconstructor;
+Asm4d_Proc proc_Table__1Entity_2EgetCaseQRCode;
+Asm4d_Proc proc_Table__1Entity_3Aconstructor;
+
+size_t Asm4d_handler_impl::sFunctionCount = 5;
+Asm4d_ProcPtr Asm4d_handler_impl::sFunctions[] = {proc_ISSUE__6,proc_TEST_2EgetCaseQRCode,proc_TEST_3Aconstructor,proc_Table__1Entity_2EgetCaseQRCode,proc_Table__1Entity_3Aconstructor};
