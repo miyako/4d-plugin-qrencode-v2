@@ -5,7 +5,7 @@ Class constructor
 	This:C1470.NewCase_ID:=Generate UUID:C1066
 	
 	// Returns a QR code for the passed case
-exposed Function getCaseQRCode()->$qrCodeImage : Picture
+local Function getCaseQRCode()->$qrCodeImage : Picture
 	
 	var $version : Integer
 	var $size : Integer
