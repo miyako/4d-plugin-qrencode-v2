@@ -18,3 +18,5 @@ qrencode/test/Plugins/qrencode.bundle/Contents/Windows64/qrencode.pdb
 qrencode/Objs/*
 .vs/*
 Objs/*
+test/Plugins/qrencode.bundle/Contents/Windows64/qrencode.lib
+test/Plugins/qrencode.bundle/Contents/Windows64/qrencode.exp
