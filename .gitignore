@@ -20,3 +20,4 @@ qrencode/Objs/*
 Objs/*
 test/Plugins/qrencode.bundle/Contents/Windows64/qrencode.lib
 test/Plugins/qrencode.bundle/Contents/Windows64/qrencode.exp
+build/*

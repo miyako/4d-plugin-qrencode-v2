@@ -379,6 +379,7 @@
 				);
 				WRAPPER_EXTENSION = bundle;
 				ZERO_LINK = YES;
+				CURRENT_PROJECT_VERSION = 1.5.5;
 			};
 			name = Development;
 		};
@@ -431,6 +432,7 @@
 				);
 				WRAPPER_EXTENSION = bundle;
 				ZERO_LINK = NO;
+				CURRENT_PROJECT_VERSION = 1.5.5;
 			};
 			name = Deployment;
 		};
@@ -480,6 +482,7 @@
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = bundle;
+				CURRENT_PROJECT_VERSION = 1.5.5;
 			};
 			name = Default;
 		};
@@ -526,6 +529,8 @@
 				SDKROOT = macosx;
 				SYMROOT = "$(SRCROOT)/test/Plugins";
 				USER_HEADER_SEARCH_PATHS = "include/**";
+				MARKETING_VERSION = 1.5.5;
+				CURRENT_PROJECT_VERSION = 1.5.5;
 			};
 			name = Development;
 		};
@@ -572,6 +577,8 @@
 				SDKROOT = macosx;
 				SYMROOT = "$(SRCROOT)/test/Plugins";
 				USER_HEADER_SEARCH_PATHS = "include/**";
+				MARKETING_VERSION = 1.5.5;
+				CURRENT_PROJECT_VERSION = 1.5.5;
 			};
 			name = Deployment;
 		};
@@ -616,6 +623,8 @@
 				SDKROOT = macosx;
 				SYMROOT = "$(SRCROOT)/test/Plugins";
 				USER_HEADER_SEARCH_PATHS = "include/**";
+				MARKETING_VERSION = 1.5.5;
+				CURRENT_PROJECT_VERSION = 1.5.5;
 			};
 			name = Default;
 		};
